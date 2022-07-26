@@ -1,0 +1,22 @@
+﻿@page
+@model WebApplication21.Pages.ProductModel
+@{
+}
+<h1>Hello from product</h1>
+<h2>@Model.product.Amount</h2>
+<h3>@Model.product.Title</h3>
+<table class="table-striped">
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Amount</th>
+    </tr>
+    @foreach (var item in Model.products)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Title</td>
+            <td>@item.Amount</td>
+        </tr>
+    }
+</table>
