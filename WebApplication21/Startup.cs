@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication21.Interfaces;
+using WebApplication21.Models;
 
 namespace WebApplication21
 {
@@ -23,11 +25,13 @@ namespace WebApplication21
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IRepository, Repository>();
+            services.AddTransient<IRepository, RepositoryMongo>();
             services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IRepository repository)
         {
             if (env.IsDevelopment())
             {
@@ -42,7 +46,7 @@ namespace WebApplication21
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            IProduct[] products = new IProduct[2] { new Product { }, new Product2 { } };
             app.UseRouting();
 
             app.UseAuthorization();
